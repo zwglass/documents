@@ -24,7 +24,7 @@ git pull origin master --allow-unrelated-histories
 git push origin master
 ```
 
-**创建分支**
+### 创建分支
 
 ***`HEAD`严格来说不是指向提交，而是指向`master`，`master`才是指向提交的，所以，`HEAD`指向的就是当前分支***
 
@@ -100,7 +100,7 @@ $ git branch
 * master
 ```
 
-**switch**
+### switch
 
 我们注意到切换分支使用`git checkout <branch>`，而撤销修改则是`git checkout -- <file>`，同一个命令，有两种作用，确实有点令人迷惑。
 
@@ -120,7 +120,7 @@ $ git switch master
 
 使用新的git switch命令，比git checkout要更容易理解。
 
-**小结**
+## 小结
 
 Git鼓励大量使用分支：
 
