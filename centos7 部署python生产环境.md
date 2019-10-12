@@ -9,7 +9,7 @@
 可以使用 wget 方法下载
 
 ```
-cd /usr/local/download        #下载文件夹
+cd /var/download        #下载文件夹
 
 wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
 ```
@@ -19,13 +19,13 @@ wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
 安装Python依赖包
 
 ```
-yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make
+yum -y install zlib-devel bzip2-devel openssl-devel libffi-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make
 ```
 
 解压和安装pythonn tgz 软件包
 
 ```
-tar -xzvf /usr/local/download/Python-3.7.4.tgz -C /usr/local/src/  # src目录是存放源码的目录,解压到src目录
+tar -xzvf /var/download/Python-3.7.4.tgz -C /usr/local/src/  # src目录是存放源码的目录,解压到src目录
 
 cd /usr/local/src/Python-3.7.4    # 进入python目录
 
@@ -54,3 +54,45 @@ chmod 777 ../profile # 更改为 777 权限
 
 echo $PATH           # 查看当前环境变量是否添加
 ```
+
+**安装虚拟环境**
+
+```
+# 新建空文件夹 venv
+mkdir /usr/local/程序目录/venv
+
+# 进入 venv 文件夹
+cd /usr/local/程序目录/venv
+
+# 安装虚拟环境 最后一个 . 表示安装在当前目录
+python -m venv .
+
+# 激活虚拟环境
+source /usr/local/程序目录/venv/bin/activate
+
+# 退出虚拟环境
+deactivate
+```
+
+-------- python 安装完成 --------
+
+***python安装模块时利用python setup.py install语句执行时，出现一下报错问题***
+
+```
+ModuleNotFoundError: No module named 'setuptools'
+```
+
+该问题出现的原因就是：python默认是没有安装setuptools这个模块的，这也是一个第三方模块，所以在利用setup.py时会报错。
+
+ (1）执行“ wget http://pypi.python.org/packages/source/s/setuptools/setuptools-0.6c11.tar.gz”命令，下载setuptools安装包；
+
+（2）执行“ tar -xvf setuptools-0.6c11.tar.gz”命令，将setuptools包解压缩；
+
+（3）执行“cd setuptools-0.6c11”命令，切换到setuptools对应目录；
+
+（4）执行“python setup.py build”命令，编译setuptools；
+
+（5）执行“python setup.py install”命令，安装setuptools；
+
+（6）此时setuptools模块就安装成功了，就可正常使用python安装其他模块。
+

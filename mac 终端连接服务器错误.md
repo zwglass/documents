@@ -1,0 +1,16 @@
+# mac 终端连接服务器错误
+
+**错误: WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED**
+
+解决方法
+
+```
+# 先cat一下家目录的.ssh/know_hosts
+cat ~/.ssh/known_hosts
+10.1.1.66 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAs86YOUHdfYUMHkJUmSpFeJCc0ztFQiWGIKlyrnf4KVCz+Ece/yY59QXnVG7b0DWA/wyzlaGRdumWFexX4Y7VE3WunEeXVPMRjF0YZgG5qW6EDXNMEquZzI5k7Jg96VGq+5ZzhtsRhUqXH1aNrMYydRfMUFDXTh+a3jKcoQLx9IiifouUuh5JEelql9w9FRgmOgOqmm3CVbn33mblyHZa0UOa3GDpFGRxFjxyPVLuOD90rJIVc126CxIK3TmsFS0emO7qxpz4mrNG/1xpCqgKxNejBkrlUtxzLxGbwuod3HPX7OB28uk1RdGsXhcZtKsPph3a04i7Y5C5QZ1XDXFzQw==
+10.1.1.61 ssh-rsa AAAAB3NzaC1yc2EAAAABJUHjuHGUsI5fLkoQayuhjMLXaE69VlxA7en/SmxXs+VDjgXLGLLTLdSOxki1cBDzuPm4FefmES4A3X3mfAB8L46rFnPJe45hca4U6uC/IbJMlO8GhrWs+fpIYVdMmOkabBQl8li0J0bclmKlsRfpnsuSfT/hm5nBUUlmQcoXzGqvoLHRgV7JESdgvMoxlHzCSGRj62aBtJXktv5dbh5vCxjeh4jFrn4FrNo7IkG3fA6NoGBqUs6tENAclxI8F1b+479ywAqQedy233n2gW+l5v6Ms1uD+1jxxCiHx8OtO1/V7/vWLfEQfEMU323y4zHu4uXFLv9WB1XGNMgqEBlELSBkNpC4Pw==
+
+# 进入此文件
+vim ~/.ssh/known_hosts
+# 删除10.1.1.61的相关的信息即可.
+```
