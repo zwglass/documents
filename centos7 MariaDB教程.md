@@ -37,3 +37,80 @@ mysql -u root -p
 ```
 mysql_secure_installation
 ```
+
+**设置 MariaDB 字符集 utf-8**
+
+```
+# 登录 MariaDB
+mysql -u root -p
+
+# 查看当前使用的字符集，应该有好几个不是UTF-8格式
+SHOW VARIABLES LIKE 'character%
+
+# 退出MariaDB
+exit; 
+```
+
+修改相应的配置文件
+
+```
+# 编辑/etc/my.cnf
+vim /etc/my.cnf
+
+# 在[mysqld]标签下添加下面内容
+default-storage-engine = innodb
+innodb_file_per_table
+max_connections = 4096
+collation-server = utf8_general_ci
+character-set-server = utf8
+
+# 编辑/etc/my.cnf.d/client.cnf
+vim /etc/my.cnf.d/client.cnf
+
+# 在[client]标签下添加下面内容
+default-character-set=utf8
+
+# 编辑/etc/my.cnf.d/mysql-clients.cnf
+vim /etc/my.cnf.d/mysql-clients.cnf
+
+# 在[mysql]标签下添加下面内容
+default-character-set=utf8
+```
+
+重启 MariaDB
+
+```
+systemctl restart mariadb
+```
+
+登录 MariaDB 再次检查编码
+
+```
+>show variables like 'character%'; 
++--------------------------+----------------------------+ 
+| Variable_name | Value | 
++--------------------------+----------------------------+ 
+| character_set_client | utf8 | 
+| character_set_connection | utf8 | 
+| character_set_database | utf8 | 
+| character_set_filesystem | binary | 
+| character_set_results | utf8 | 
+| character_set_server | utf8 | 
+| character_set_system | utf8 | 
+| character_sets_dir | /usr/share/mysql/charsets/ | 
++--------------------------+----------------------------+
+```
+
+***说明:***
+
+已建的库和表，编码不会改变。如果在已有库中继续建表，表依然会继承来自库的过去使用的编码;
+
+***编码解释:***
+ 
+- character_set_client为客户端编码方式;
+- character_set_connection为建立连接使用的编码;
+- character_set_database数据库的编码;
+- character_set_results结果集的编码;
+- character_set_server数据库服务器的编码;
+
+只要保证以上四个采用的编码方式一样，就不会出现乱码问题。
