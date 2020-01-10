@@ -14,6 +14,15 @@ npm list -g --depth 0
 └── nrm@1.0.2
 ```
 
+加载配置的文件
+
+```
+source ~/.bash_profile
+```
+
+***如果还是报错 执行下面方法***
+
+
 此时执行nrm add {仓库地址} 会提示command not found，出现该问题的原因是没有配置环境变量，解决方案:
 打开bash_profile文件  
 
