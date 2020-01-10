@@ -163,3 +163,16 @@ print(t1_obj.name,t1_obj.age)  # 确实内取到对象里的属性
 t1_str = t1.__str__()  # 要传字符串，还差直接用__str__来获取
 print(t1_str,type(t1_str))  # 这里获取到的就是字符串类型了
 ```
+
+## 使用 text content、json
+
+**抓取网络数据后返回值**
+
+`resp.text` 返回的是Unicode型的数据。 
+
+`resp.content` 返回的是bytes型的数据。 
+
+也就是说，如果你想取文本，可以通过r.text。 
+如果想取图片，文件，则可以通过r.content。 
+
+`resp.json()` 返回的是json格式数据
