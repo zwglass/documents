@@ -26,5 +26,12 @@ vi ~/.bash_profile
 
 
 输入:wq!保存并退出
-输入source ~/.bash_profile加载刚刚配置的文件。
+
+输入
+
+```
+source ~/.bash_profile
+```
+
+加载刚刚配置的文件。
 现在就可以愉快的使用nrm指令了，以后安装的全局node指令也都可以正常使用了。
