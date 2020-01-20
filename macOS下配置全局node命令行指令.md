@@ -14,20 +14,23 @@ npm list -g --depth 0
 └── nrm@1.0.2
 ```
 
-加载配置的文件
+加载配置的文件 
+macOS Catalina(10.15) 以上为 ~/.zshrc
 
 ```
 source ~/.bash_profile
+source ~/.zshrc            # macOS Catalina(10.15)
 ```
 
 ***如果还是报错 执行下面方法***
 
 
 此时执行nrm add {仓库地址} 会提示command not found，出现该问题的原因是没有配置环境变量，解决方案:
-打开bash_profile文件  
+打开bash_profile文件  macOS Catalina(10.15) 以上为 ~/.zshrc
 
 ```
 vi ~/.bash_profile
+vi ~/.zshrc            # macOS Catalina(10.15)
 ```
 
 如果系统里不存在该文件，该命令会自动生成一个。
@@ -43,6 +46,7 @@ export PATH="$PATH:/usr/local/Cellar/node/10.9.0/bin"
 
 ```
 source ~/.bash_profile
+source ~/.zshrc            # macOS Catalina(10.15)
 ```
 
 加载刚刚配置的文件。
