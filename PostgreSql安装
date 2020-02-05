@@ -1,1 +1,83 @@
-PostgreSql
+# PostgreSql安装
+
+## 中文文档
+
+[PostgreSQL 10.1 文档](http://www.postgres.cn/docs/10/)
+
+## mac homebrew安装
+
+1. 使用homebrew安装
+
+```
+brew install postgresql
+```
+
+2. 初始化db
+
+```
+initdb /usr/local/var/postgres
+```
+
+***如果有旧版本的代码不兼容，报错 -- 解决办法参考 [stackoverflow](https://stackoverflow.com/questions/17822974/postgres-fatal-database-files-are-incompatible-with-server)***
+
+```
+rm -rf /usr/local/var/postgres && initdb /usr/local/var/postgres -E utf8
+```
+
+3. 设置环境变量 ~/.zshrc 文件加上 `export PGDATA=/usr/local/var/postgres`
+
+```
+vim ~/.zshrc
+
+# 打开的文件加上
+export PGDATA=/usr/local/var/postgres
+
+# 退出终端 重新打开后就可以使用 pg_ctl 命令
+```
+
+启动服务
+
+```
+pg_ctl -D /usr/local/var/postgres -l logfile start
+```
+
+## 登陆PostgreSql数据库
+
+```
+psql postgres
+```
+
+
+## 创建数据库
+
+mac安装postgresql后不会创建用户名数据库，执行命令：
+
+1. 创建postgres用户
+
+```
+CREATE USER postgres WITH PASSWORD 'password';
+```
+
+2. 删除默认生成的postgres数据库
+
+```
+DROP DATABASE postgres;
+```
+
+3. 创建属于postgres用户的postgres数据库
+
+```
+CREATE DATABASE postgres OWNER postgres;
+```
+
+4. 将数据库所有权限赋予postgres用户
+
+```
+GRANT ALL PRIVILEGES ON DATABASE postgres to postgres;
+```
+
+5. 给postgres用户添加创建数据库的属性
+
+```
+ALTER ROLE postgres CREATEDB;
+```
