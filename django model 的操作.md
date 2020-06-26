@@ -86,8 +86,8 @@ class Person:
 
 ### 三. model 操作
 
-1. ret = models.Person.object.all()  # 拿到所有对象; 返回值:对象列表 
-2. ret = models.Person.object.all().values() # 拿到所有值; 返回值:整个是对象列表,元素每个字段的组成的字典或元组; value 可以指定条件: 例如values( 'id', 'name')          values_list('id', ' name')  
+1. ret = models.Person.objects.all()  # 拿到所有对象; 返回值:对象列表 
+2. ret = models.Person.objects.all().values() # 拿到所有值; 返回值:整个是对象列表,元素每个字段的组成的字典或元组; value 可以指定条件: 例如values( 'id', 'name')          values_list('id', ' name')  
 3. edit_obj= models.Person.object.get(id=1)  # 条件(id=1) 返回值: 一个对象,查询不到报错 
 
 
@@ -98,16 +98,16 @@ edit_obj.name=new_name
 edit_obj.save()
 
 # 也可以用
-models.Person.object.filter(id=1).update(name)='new name'
+models.Person.objects.filter(id=1).update(name)='new name'
 ```
 
-4. ret=models.Person.object.filter(id=1)  # 过滤条件  拿到所有符合的 对象列表 不存在为空
-5. ret=models.Person.object.exclude(id=1)  # 排除条件中的 
-6. ret = models.Person.object.all().order_by( '-id ')  # 拿取时的顺序  -倒序  可以有多个条件; .reverse() 可以反序
+4. ret=models.Person.objects.filter(id=1)  # 过滤条件  拿到所有符合的 对象列表 不存在为空
+5. ret=models.Person.objects.exclude(id=1)  # 排除条件中的 
+6. ret = models.Person.objects.all().order_by( '-id ')  # 拿取时的顺序  -倒序  可以有多个条件; .reverse() 可以反序
 7. distinct  # 对象去重
-8. ret=models.Person.object.count()  # 计数     
-9. ret=models.Person.object.first()  /  .last()      取对象列表的 第一个/最后一个 为空时 为None
-10. ret=models.Person.object.first().exiss()         判断是否存在 `filter()`   `all()` 有这个方法 `get()` 没有 
+8. ret=models.Person.objects.count()  # 计数     
+9. ret=models.Person.objects.first()  /  .last()      取对象列表的 第一个/最后一个 为空时 为None
+10. ret=models.Person.objects.first().exiss()         判断是否存在 `filter()`   `all()` 有这个方法 `get()` 没有 
 11. models.Person.object.create(id=1,name=' wyc')  # 创建
 
 ### 四. 数据查询
@@ -116,22 +116,22 @@ models.Person.object.filter(id=1).update(name)='new name'
 
 ```
 # __gt: >;  __gte: >=;
-ret=models.Person.object.filter(id__gt =1)  # id>1的结果
+ret=models.Person.objects.filter(id__gt =1)  # id>1的结果
 
 # __lt: <; lte: <=;
-ret=models.Person.object.filter(id__lt =4)  # id<4的结果
+ret=models.Person.objects.filter(id__lt =4)  # id<4的结果
 
 # __in: 列表中包含的内容;
-ret=models.Person.object.filter(id__in =[1,3])  # id 为1,3 的结果
+ret=models.Person.objects.filter(id__in =[1,3])  # id 为1,3 的结果
 
 # __range: 之间的值
-ret=models.Person.object.filter(id__range=[1,3])  # 1=< id <=3 的结果; 相当于filter(id__gt =1, id__lt=3)
+ret=models.Person.objects.filter(id__range=[1,3])  # 1=< id <=3 的结果; 相当于filter(id__gt =1, id__lt=3)
 
 # __contains: 字符串包含,忽律大小写
-ret=models.Person.object.filter ( name__contains='e')  # name中包含 'e'的 结果
+ret=models.Person.objects.filter ( name__contains='e')  # name中包含 'e'的 结果
 
 # __startwith: 开头包含, 忽律大小写
-ret=models.Person.object.filter(name__startwith='e')  # name中以 'e'开头的结果
+ret=models.Person.objects.filter(name__startwith='e')  # name中以 'e'开头的结果
 
 # __isnull: 为空的字段
 name__isnull=True  # 取出name字段为空的
@@ -151,7 +151,7 @@ book_obj = models.Person.object.get(id=1) 
 ret=models.book.object.filter(press__name='北京出版社')
 
 #反向:
-ret=models.press.object.get(id='1')
+ret=models.press.objects.get(id='1')
 # ret.book_set 表名_set  django封装的方法 拿到的是管理对象
 # ret.book_set.all()  拿到列表对象
 ```

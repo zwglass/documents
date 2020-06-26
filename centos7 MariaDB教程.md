@@ -32,7 +32,7 @@ systemctl stop mariadb.service             #停止MariaDB
 mysql -u root -p
 ```
 
-**进行MariaDB的相关简单配置,使用mysql_secure_installation命令进行配置(设置密码等等)**
+**进行MariaDB的相关简单配置,使用`mysql_secure_installation`命令进行配置(设置密码等等)**
 
 ```
 mysql_secure_installation
